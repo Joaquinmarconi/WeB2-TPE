@@ -1,0 +1,15 @@
+<?php require 'templates/header.phtml' ?>
+
+<ul class="list-group">
+<?php foreach($albums as $album): ?>
+    <li class="list-group-item item-album">
+        <div>
+            <a href="/detalle/<?= $album->id ?>">
+                <b><?= $album->nombre_album ?></b> | <?= $album->año ?> 
+            </a>
+        </div>
+    </li>
+<?php endforeach ?>
+</ul>
+
+<?php require 'templates/footer.phtml' ?>
