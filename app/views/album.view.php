@@ -17,8 +17,7 @@ class AlbumView
     public function showAlbumDetails($album, $banda)
     {
        
-        var_dump($album);
-        var_dump($banda);
+       
           require 'templates/album_detail.phtml';
            
     }

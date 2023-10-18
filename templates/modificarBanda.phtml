@@ -1,0 +1,20 @@
+
+<form method="post" action="modificar_banda">
+    <label for="bandaId">Selecciona una banda:</label>
+    <select id="bandaId" name="bandaId">
+        <?php foreach ($bandas as $banda): ?>
+            <option value="<?= $banda->Banda_ID ?>"><?= $banda->Banda_ID ?></option>
+        <?php endforeach; ?>
+    </select>
+
+    <label for="campo">Selecciona un campo para actualizar:</label>
+    <select id="campo" name="campo">
+        <option value="Nombre_Banda">Nombre de la Banda</option>
+        <option value="Fecha_Fundacion">Fecha de Fundación</option>
+    </select>
+
+    <label for="nuevoValor">Ingresa el nuevo valor:</label>
+    <input type="text" id="nuevoValor" name="nuevoValor">
+
+    <input type="submit" value="Actualizar">
+</form>

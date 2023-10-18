@@ -24,15 +24,15 @@ class AlbumModel
     }
 
     function getAlbumById($id)
-{
-    $query = $this->db->prepare('SELECT * FROM album WHERE Album_ID = ?');
-    $query->execute([$id]);
+    {
+        $query = $this->db->prepare('SELECT * FROM album WHERE Album_ID = ?');
+        $query->execute([$id]);
 
-    // $album es un objeto que representa el álbum
-    $album = $query->fetch(PDO::FETCH_OBJ);
+        // $album es un objeto que representa el álbum
+        $album = $query->fetch(PDO::FETCH_OBJ);
 
-    return $album;
-}
+        return $album;
+    }
 
 
     /**
@@ -50,7 +50,17 @@ class AlbumModel
 
     function deleteAlbum($id)
     {
-        $query = $this->db->prepare('DELETE FROM album WHERE id = ?');
+        $query = $this->db->prepare('DELETE FROM album WHERE Album_ID = ?');
         $query->execute([$id]);
     }
+
+    public function updateAlbum($albumId, $campo, $nuevoValor)
+    {
+        // Prepara la consulta SQL
+        $query = $this->db->prepare("UPDATE album SET {$campo} = ? WHERE Album_ID = ?");
+
+        // Ejecuta la consulta con los valores del formulario
+        $query->execute([$nuevoValor, $albumId]);
+    }
+
 }

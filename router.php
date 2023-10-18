@@ -1,6 +1,8 @@
 <?php
 require_once './app/controllers/album.controller.php';
 require_once './app/controllers/auth.controller.php';
+require_once './app/controllers/admin.controller.php';
+require_once './app/controllers/user.controller.php';
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
@@ -31,17 +33,42 @@ switch ($params[0]) {
         $controller = new AlbumController();
         $controller->showAlbumDetail($params[1]); // $params[1] debería ser el ID del álbum
         break;
-    case 'agregar':
+    case 'administracion_album':
+        $controller = new AdminController();
+        $controller->showAlbumAdministrator();
+        break;
+    case 'administracion_banda':
+        $controller = new AdminController();
+        $controller->showBandAdministrator();
+        break;
+    case 'agregar_album':
         $controller = new AlbumController();
         $controller->addAlbum();
         break;
-    case 'eliminar':
+    case 'eliminar_album':
         $controller = new AlbumController();
-        $controller->removeAlbum($params[1]);
+        $controller->removeAlbum($_POST['Album_ID']);
+        break;
+    case 'modificar_album':
+        $controller = new AlbumController();
+        $controller->updateAlbum();
+        break;
+
+    case 'modificar_banda':
+        $controller = new BandaController();
+        $controller->updateBanda();
         break;
     case 'login':
         $controller = new AuthController();
         $controller->showLogin();
+        break;
+    case 'create_user':
+        $controller = new UserController();
+        $controller->showCreateUser();
+        break;
+    case 'create_user_action':
+        $controller = new UserController();
+        $controller->createUser();
         break;
     case 'auth':
         $controller = new AuthController();

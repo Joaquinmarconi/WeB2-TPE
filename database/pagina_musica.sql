@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2023 a las 22:43:16
+-- Tiempo de generación: 16-10-2023 a las 17:35:47
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `album` (
-  `Album_ID` int(11) NOT NULL,
+  `Album_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre_Album` text NOT NULL,
   `Año` int(11) NOT NULL,
   `Banda_ID` int(11) NOT NULL
@@ -51,7 +51,7 @@ INSERT INTO `album` (`Album_ID`, `Nombre_Album`, `Año`, `Banda_ID`) VALUES
 --
 
 CREATE TABLE `banda` (
-  `Banda_ID` int(11) NOT NULL,
+  `Banda_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre_banda` varchar(15) NOT NULL,
   `Fecha_fundación` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -72,10 +72,18 @@ INSERT INTO `banda` (`Banda_ID`, `Nombre_banda`, `Fecha_fundación`) VALUES
 --
 
 CREATE TABLE `usuarios` (
-  `usuario_ID` int(11) NOT NULL,
-  `email` varchar(254) NOT NULL,
-  `contraseña` char(60) NOT NULL
+  `usuario_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_name` varchar(254) NOT NULL,
+  -- Cambia el tipo de dato aquí
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`usuario_ID`, `usuario_name`, `password`) VALUES
+(1, 'webadmin', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -107,7 +115,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `usuario_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

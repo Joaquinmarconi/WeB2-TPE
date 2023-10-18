@@ -2,19 +2,21 @@
 require_once './app/models/album.model.php';
 require_once './app/views/album.view.php';
 require_once './app/helpers/auth.helper.php';
+require_once './app/models/banda.model.php';
+
 
 class AlbumController
 {
     private $model;
     private $view;
+    private $category_model;
 
     public function __construct()
     {
-        // verifico logueado
-        AuthHelper::verify();
 
         $this->model = new AlbumModel();
         $this->view = new AlbumView();
+        $this->category_model = new BandaModel();
     }
 
     public function showAlbums()
@@ -32,7 +34,7 @@ class AlbumController
     $album = $this->model->getAlbumById($id);
 
     // Obtén los datos de la banda
-    $banda = $this->model->getBandaById($album->banda_id);
+    $banda = $this->category_model->getBandaById($album->Banda_ID);
 
     // Muestra el detalle del álbum desde la vista
     $this->view->showAlbumDetails($album, $banda);
@@ -65,6 +67,20 @@ class AlbumController
     {
         $this->model->deleteAlbum($id);
         header('Location: ' . BASE_URL);
+    }
+
+    public function updateAlbum()
+    {
+        // Obtén los valores del formulario
+        $albumId = $_POST['albumId'];
+        $campo = $_POST['campo'];
+        $nuevoValor = $_POST['nuevoValor'];
+
+        // Actualiza el álbum en la base de datos
+        $this->model->updateAlbum($albumId, $campo, $nuevoValor);
+
+        // Redirige al usuario a la página de administración
+        header('Location: ' . BASE_URL . 'administracion_album');
     }
 
 }

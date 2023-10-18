@@ -1,0 +1,24 @@
+<?php
+// Asegúrate de reemplazar esto con tu propia lógica para obtener los álbumes
+
+?>
+
+<form method="post" action="modificar_album">
+    <label for="albumId">Selecciona un álbum:</label>
+    <select id="Album_ID" name="albumId">
+        <?php foreach ($albums as $album): ?>
+            <option value="<?= $album->Album_ID ?>"><?= $album->Album_ID ?></option>
+        <?php endforeach; ?>
+    </select>
+
+    <label for="campo">Selecciona un campo para actualizar:</label>
+    <select id="campo" name="campo">
+        <option value="Nombre_Album">Nombre del Álbum</option>
+        <option value="Año">Año</option>
+    </select>
+
+    <label for="nuevoValor">Ingresa el nuevo valor:</label>
+    <input type="text" id="nuevoValor" name="nuevoValor">
+
+    <input type="submit" value="modificar_album">
+</form>
