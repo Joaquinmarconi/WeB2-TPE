@@ -93,7 +93,8 @@ INSERT INTO `usuarios` (`usuario_ID`, `usuario_name`, `password`) VALUES
 -- Indices de la tabla `album`
 --
 ALTER TABLE `album`
-  ADD PRIMARY KEY (`Album_ID`);
+ADD FOREIGN KEY (`Banda_ID`) 
+REFERENCES `banda`(`Banda_ID`);
 
 --
 -- Indices de la tabla `banda`

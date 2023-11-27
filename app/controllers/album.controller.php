@@ -43,6 +43,7 @@ class AlbumController
     public function addAlbum()
     {
 
+        AuthHelper::verify();
         // obtengo los datos del álbum
         $nombre_album = $_POST['nombre_album'];
         $año = $_POST['año'];
@@ -65,12 +66,14 @@ class AlbumController
 
     function removeAlbum($id)
     {
+        AuthHelper::verify();
         $this->model->deleteAlbum($id);
         header('Location: ' . BASE_URL);
     }
 
     public function updateAlbum()
     {
+        AuthHelper::verify();
         // Obtén los valores del formulario
         $albumId = $_POST['albumId'];
         $campo = $_POST['campo'];

@@ -1,6 +1,12 @@
 <form method="post" action="eliminar_album">
-    <label for="albumId">ID del Álbum a eliminar:</label>
-    <input type="text" id="Album_ID" name="Album_ID">
+    <label for="albumName">Album a eliminar:</label>
+    <select id="Album_ID" name="Album_ID">
+        <?php
+        foreach ($albums as $album) {
+            echo "<option value=\"" . $album->Album_ID . "\">" . $album->Nombre_Album . "</option>";
+        }
+        ?>
+    </select>
 
-    <input type="submit" value="eliminar_album">
+    <input type="submit" value="Eliminar Álbum">
 </form>

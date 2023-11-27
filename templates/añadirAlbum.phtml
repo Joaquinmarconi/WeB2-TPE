@@ -5,8 +5,15 @@
     <label for="anio">Año:</label>
     <input type="text" id="año" name="año" required>
 
-    <label for="bandaId">ID de la Banda:</label>
-    <input type="text" id="banda_id" name="banda_id" required>
+    <label for="bandaId">Banda:</label>
+    <select id="banda_id" name="banda_id" required>
+        <?php
+        foreach ($bandas as $banda) {
+            echo "<option value=\"" . $banda->Banda_ID . "\">" . $banda->Nombre_banda . "</option>";
+        }
+
+        ?>
+    </select>
 
     <input type="submit" value="Añadir Álbum">
 </form>

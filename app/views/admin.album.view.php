@@ -16,10 +16,10 @@ class AdminAlbumView
 
     function showAlbumAdministrator()
     {
-        // Obtén los álbumes desde el modelo
-        $albums = $this->itemModel->getAlbums();
 
-        // Pasa los álbumes a la vista
+        $albums = $this->itemModel->getAlbums();
+        $bandas = $this->categoryModel->getBandas();
+
         require 'templates/añadirAlbum.phtml';
         require 'templates/borrarAlbum.phtml';
         require 'templates/modificarAlbum.phtml';

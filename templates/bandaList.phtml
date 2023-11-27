@@ -1,0 +1,15 @@
+<?php require 'templates/header.phtml' ?>
+
+<ul class="list-group">
+<?php foreach($bandas as $banda): ?>
+    <li class="list-group-item item-banda">
+        <div>
+            <a href="filtro/<?= $banda->Banda_ID ?>">
+                <b><?= $banda->Nombre_banda ?></b> | <?= $banda->Fecha_Fundacion ?> 
+            </a>
+        </div>
+    </li>
+<?php endforeach ?>
+</ul>
+
+<?php require 'templates/footer.phtml' ?>

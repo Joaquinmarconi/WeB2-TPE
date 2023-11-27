@@ -1,5 +1,6 @@
 <?php
 require_once './app/controllers/album.controller.php';
+require_once './app/controllers/banda.controller.php';
 require_once './app/controllers/auth.controller.php';
 require_once './app/controllers/admin.controller.php';
 require_once './app/controllers/user.controller.php';
@@ -24,14 +25,21 @@ if (!empty($_GET['action'])) {
 $params = explode('/', $action);
 
 switch ($params[0]) {
-    case 'listar':
+    case 'AlbumLista':
         $controller = new AlbumController();
         $controller->showAlbums();
         break;
-
+    case 'BandaLista':
+        $controller = new BandaController();
+        $controller->showBandas();
+        break;
     case 'detalle':
         $controller = new AlbumController();
         $controller->showAlbumDetail($params[1]); // $params[1] debería ser el ID del álbum
+        break;
+    case 'filtro':
+        $controller = new BandaController();
+        $controller->showBandaDetail($params[1]); // $params[1] debería ser el ID del álbum
         break;
     case 'administracion_album':
         $controller = new AdminController();

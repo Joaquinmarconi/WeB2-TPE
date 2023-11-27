@@ -1,10 +1,12 @@
 <?php
 require_once './app/models/Banda.model.php';
+require_once './app/models/album.model.php';
 require_once './app/views/Banda.view.php';
 require_once './app/helpers/auth.helper.php';
 
 class BandaController {
     private $model;
+    private $categoryModel;
     private $view;
 
     public function __construct() {
@@ -13,6 +15,7 @@ class BandaController {
 
         $this->model = new BandaModel();
         $this->view = new BandaView();
+        $this->categoryModel = new AlbumModel;
     }
 
     public function showBandas() {
@@ -23,8 +26,18 @@ class BandaController {
         $this->view->showBandas($Bandas);
     }
 
+    public function showBandaDetail($id)
+    {
+       
+        $album = $this->categoryModel->getAlbumsByBandaId($id);
+    
+        $this->view->showBandaDetails($album);
+    }
+    
+
     public function addBanda() {
 
+        AuthHelper::verify();
         // obtengo los datos del usuario
         $title = $_POST['title'];
         $description = $_POST['description'];
@@ -45,12 +58,14 @@ class BandaController {
     }
 
     function removeBanda($id) {
+        AuthHelper::verify();
         $this->model->deleteBanda($id);
         header('Location: ' . BASE_URL);
     }
     
     public function updateBanda()
     {
+        AuthHelper::verify();
         // Obtén los valores del formulario
         $bandaId = $_POST['bandaId'];
         $campo = $_POST['campo'];

@@ -30,7 +30,9 @@ class UserController
             }
 
             // Creo el usuario
-            $this->model->createUser($usuario_name, $password);
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $this->model->createUser($usuario_name, $hashedPassword);
+
 
             // Redirijo al login
             header('Location: ' . BASE_URL . '/login');

@@ -1,13 +1,16 @@
 <?php
 
 class BandaView {
-    public function showBandas($Bandas) {
+    public function showBandas($bandas) {
        
-     // NOTA: el template va a poder acceder a todas las variables y constantes que tienen alcance en esta funcion
+        require 'templates/bandaList.phtml';
+    }
 
-        // mostrar el template
-        require 'templates/BandaList.phtml';
-        require 'templates/album_detail.phtml';
+    public function showBandaDetails($album)
+    {
+       
+          require 'templates/banda_detail.phtml';
+           
     }
 
     public function showError($error) {

@@ -34,6 +34,17 @@ class AlbumModel
         return $album;
     }
 
+    function getAlbumsByBandaId($id)
+    {
+        $query = $this->db->prepare('SELECT * FROM album WHERE Banda_ID = ?');
+        $query->execute([$id]);
+
+        // $album es un objeto que representa el álbum
+        $album = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $album;
+    }
+
 
     /**
      * Inserta la tarea en la base de datos
